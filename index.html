@@ -25,7 +25,7 @@
     .hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0a0a0a}
     .hero-bg{position:absolute;inset:0;background:
       linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.78)),
-      url("assets/553239145_1319090976576435_6625720396490624142_n.jpg") center/cover no-repeat}
+      url("assets/552910285_1319090733243126_6024900471807888045_n.jpg") center/cover no-repeat}
     .hero-content{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;opacity:0;transform:translateY(30px);animation:fadeInUp 1.2s ease .1s forwards}
     .hero-portrait{width:240px;height:240px;border-radius:50%;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.55);border:3px solid rgba(255,255,255,.35)}
     .hero h1{font-size:clamp(44px,6vw,84px);font-weight:700;letter-spacing:-1.5px;margin-top:6px;background:linear-gradient(135deg,#fff 0%,#888 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 6px 24px rgba(0,0,0,.6)}
@@ -43,7 +43,7 @@
     .image-caption p{font-size:16px;color:#ccc}
 
     .parallax-section{height:90vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background:url("assets/553239145_1319090976576435_6625720396490624142_n.jpg") center/cover no-repeat;transform:translateY(0)}
+    .parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background:url("assets/513825336_1248139760338224_8182710943771384829_n.jpg") center/cover no-repeat;transform:translateY(0)}
     .parallax-content{position:relative;z-index:1;text-align:center;padding:50px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:1px solid #161616;border-radius:24px;max-width:1000px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
     .about-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center}
     .about-photo{border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4)}
@@ -135,16 +135,13 @@
 
   <section class="scroll-section">
     <div class="image-reveal" data-scroll>
-      <img src="assets/553239145_1319090976576435_6625720396490624142_n.jpg" alt="Waterfall landscape" loading="lazy" referrerpolicy="no-referrer">
+      <img src="assets/552910285_1319090733243126_6024900471807888045_n.jpg" alt="Golden landscape scene" loading="lazy" referrerpolicy="no-referrer">
       <div class="image-caption">
         <h2>Landscapes</h2>
         <p>Where earth meets sky</p>
       </div>
     </div>
   </section>
-
-  <!-- Gallery + contact/footer unchanged -->
-  <!-- (keep your same gallery and contact sections from previous version) -->
 
   <script>
     const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.2,rootMargin:'0px 0px -100px 0px'});
