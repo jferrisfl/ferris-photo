@@ -164,7 +164,7 @@
   <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <!-- Use your logo file in assets -->
+      <!-- Your logo image -->
       <img class="hero-portrait" src="assets/logo.jpg" alt="" referrerpolicy="no-referrer">
       <h1>Ferris Photography</h1>
       <p>Capturing the raw beauty of wildlife and landscapes</p>
@@ -237,7 +237,7 @@
 
     <div class="masonry" id="masonry-gallery">
 
-      <!-- Optional additional images (make sure these exist in /assets) -->
+      <!-- Optional additional images if present in /assets -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/bird.jpg" alt="Bird" loading="lazy" referrerpolicy="no-referrer" data-full="assets/bird.jpg">
       </figure>
@@ -251,7 +251,7 @@
         <img src="assets/moth.jpg" alt="Moth" loading="lazy" referrerpolicy="no-referrer" data-full="assets/moth.jpg">
       </figure>
 
-      <!-- Your existing set -->
+      <!-- Existing set -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/FER07219.jpg" alt="FER07219" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07219.jpg">
       </figure>
@@ -331,10 +331,10 @@
       <!-- Success banner -->
       <div id="sentBanner" class="success-banner">Thanks! Your message was sent.</div>
 
-      <!-- Working: FormSubmit (no account needed) -->
+      <!-- WORKING form: uses FormSubmit (no dashboard) -->
       <form class="contact" action="https://formsubmit.co/jferrisfl@gmail.com" method="POST">
-        <input type="text"   name="name"  placeholder="Your name"  required>
-        <input type="email"  name="email" placeholder="Your email" required>
+        <input type="text"   name="name"  placeholder="Your name"  required autocomplete="name">
+        <input type="email"  name="email" placeholder="Your email" required autocomplete="email">
         <textarea name="message" rows="5" placeholder="Project details" required></textarea>
 
         <!-- Options -->
@@ -452,7 +452,7 @@
       }));
     })();
 
-    // Show success banner if redirected with ?sent=1
+    // Success banner for FormSubmit redirect
     (function(){
       const params=new URLSearchParams(window.location.search);
       if(params.get('sent')==='1'){
