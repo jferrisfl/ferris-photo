@@ -6,14 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ferris Photography | Wildlife & Landscapes</title>
 
+  <!-- SEO -->
+  <meta name="description" content="Ferris Photography — wildlife and landscape photography from South Florida. Commissions, prints, and licensing."/>
+  <link rel="canonical" href="https://jferrisfl.github.io/ferris-photo/"/>
+
+  <!-- Social share -->
+  <meta property="og:title" content="Ferris Photography"/>
+  <meta property="og:description" content="Wildlife & landscapes from South Florida"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://jferrisfl.github.io/ferris-photo/"/>
+  <!-- Optional: add a share image at assets/share.jpg -->
+  <meta property="og:image" content="assets/share.jpg"/>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jeremy Ferris",
+    "url": "https://jferrisfl.github.io/ferris-photo/",
+    "sameAs": [
+      "https://www.facebook.com/jeremyferrisphotography",
+      "https://www.instagram.com/jeremyferrisphotography/"
+    ],
+    "image": "assets/portrait.jpg"
+  }
+  </script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico">
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="assets/553239145_1319090976576435_6625720396490624142_n.jpg" imagesizes="100vw">
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{background:#0b0b0b;color:#fff;font-family:'Montserrat',sans-serif;overflow-x:hidden}
     h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600}
+
+    /* Skip link */
+    .skip{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden
+    }
+    .skip:focus{
+      position:fixed;left:20px;top:20px;width:auto;height:auto;background:#fff;color:#000;
+      padding:10px 14px;border-radius:8px;z-index:3000
+    }
 
     /* Nav */
     nav{position:fixed;top:0;width:100%;z-index:1000;padding:20px 50px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);border-bottom:1px solid #161616;transition:all .3s}
@@ -59,6 +102,12 @@
     .gallery-section{padding:100px 24px;background:#0b0b0b}
     .gallery-header{text-align:center;margin-bottom:24px}
     .gallery-header h2{font-size:clamp(38px,5vw,60px)}
+    .gallery-sub{color:#aaa;margin-top:6px}
+    .gallery-filters{margin:16px 0 24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .gallery-filters button{
+      background:#161616;color:#eee;border:1px solid #272727;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:14px
+    }
+    .gallery-filters button.active{background:#fff;color:#000;border-color:#fff}
     .masonry{columns:1;column-gap:24px;max-width:1400px;margin:0 auto}
     .masonry-item{break-inside:avoid;margin-bottom:24px;border-radius:20px;overflow:hidden;border:1px solid #161616;box-shadow:0 8px 20px rgba(0,0,0,.35);opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
     .masonry-item.visible{opacity:1;transform:translateY(0)}
@@ -86,13 +135,26 @@
     footer p{color:#666;font-size:14px}
 
     /* Contact */
-    .contact-section{min-height:50vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;background:#000}
+    .contact-section{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;background:#000}
     .contact-content{text-align:center;max-width:800px}
     .cta-button{display:inline-block;padding:18px 50px;background:#fff;color:#000;text-decoration:none;border-radius:30px;font-size:16px;font-weight:600;transition:.3s}
     .cta-button:hover{background:#ddd;transform:scale(1.05)}
+    form.contact{margin:24px auto 0;max-width:640px;display:grid;gap:12px}
+    form.contact input, form.contact textarea{
+      background:#0f0f0f;color:#fff;border:1px solid #222;border-radius:12px;padding:14px;font:inherit
+    }
+    form.contact button{justify-self:center}
+
+    /* Back to top */
+    #toTop{
+      position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #2a2a2a;background:#0f0f0f;color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:1200
+    }
+    #toTop.show{display:flex}
   </style>
 </head>
 <body>
+
+  <a class="skip" href="#portfolio">Skip to gallery</a>
 
   <!-- Nav -->
   <nav id="navbar">
@@ -119,7 +181,7 @@
   <!-- Wildlife -->
   <section class="scroll-section">
     <div class="image-reveal" data-scroll>
-      <img src="assets/558494119_10241584396893785_8721236944893235527_n.jpg" alt="Orb-weaver spider building a web" loading="lazy" referrerpolicy="no-referrer">
+      <img src="assets/558494119_10241584396893785_8721236944893235527_n.jpg" alt="Orb-weaver spider on web" loading="lazy" referrerpolicy="no-referrer">
       <div class="image-caption">
         <h2>Wildlife</h2>
         <p>Moments of untamed beauty</p>
@@ -159,7 +221,7 @@
   <!-- Landscapes -->
   <section class="scroll-section">
     <div class="image-reveal" data-scroll>
-      <img src="assets/552910285_1319090733243126_6024900471807888045_n.jpg" alt="Golden landscape scene" loading="lazy" referrerpolicy="no-referrer">
+      <img src="assets/552910285_1319090733243126_6024900471807888045_n.jpg" alt="Garden pond and bridge landscape" loading="lazy" referrerpolicy="no-referrer">
       <div class="image-caption">
         <h2>Landscapes</h2>
         <p>Where earth meets sky</p>
@@ -171,79 +233,89 @@
   <section class="gallery-section" id="portfolio" aria-label="Featured Work">
     <div class="gallery-header">
       <h2>Featured Work</h2>
+      <p class="gallery-sub">Wildlife & landscapes from South Florida</p>
+      <div class="gallery-filters" aria-label="Filter gallery">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="wildlife">Wildlife</button>
+        <button data-filter="landscape">Landscape</button>
+        <button data-filter="macro">Macro</button>
+      </div>
     </div>
+
     <div class="masonry" id="masonry-gallery">
 
-      <!-- newly added images -->
-      <figure class="masonry-item" data-scroll>
+      <!-- NEW images -->
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/bird.jpg" alt="Bird" loading="lazy" referrerpolicy="no-referrer" data-full="assets/bird.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
+      <figure class="masonry-item" data-scroll data-tags="macro">
         <img src="assets/drop.jpg" alt="Water drop macro" loading="lazy" referrerpolicy="no-referrer" data-full="assets/drop.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/duck.jpg" alt="Duck" loading="lazy" referrerpolicy="no-referrer" data-full="assets/duck.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
+      <figure class="masonry-item" data-scroll data-tags="macro">
         <img src="assets/moth.jpg" alt="Moth" loading="lazy" referrerpolicy="no-referrer" data-full="assets/moth.jpg">
       </figure>
 
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/FER07219.jpg" alt="FER07219" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07219.jpg">
+      <!-- Existing set (tagged) -->
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07219.jpg" alt="Wood stork stretching wings in foliage" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07219.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/FER07228.jpg" alt="FER07228" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07228.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/FER07228.jpg" alt="Shaded path through palms and oaks" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07228.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/FER07254.jpg" alt="FER07254" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07254.jpg">
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07254.jpg" alt="Green iguana profile close-up" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07254.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/FER07277.jpg" alt="FER07277" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07277.jpg">
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07277.jpg" alt="Tri-colored heron on boardwalk" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07277.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/FER07295.jpg" alt="FER07295" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07295.jpg">
+      <figure class="masonry-item" data-scroll data-tags="macro">
+        <img src="assets/FER07295.jpg" alt="Pickerelweed blooms macro" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07295.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/FER07301.jpg" alt="FER07301" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07301.jpg">
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07301.jpg" alt="Wood stork portrait" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07301.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/FER07307.jpg" alt="FER07307" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07307.jpg">
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07307.jpg" alt="Pigeon on wooden rail" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07307.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/486954031_9374678792587939_2967861489678101225_n.jpg" alt="Wildlife detail" loading="lazy" referrerpolicy="no-referrer" data-full="assets/486954031_9374678792587939_2967861489678101225_n.jpg">
+
+      <figure class="masonry-item" data-scroll data-tags="macro">
+        <img src="assets/486954031_9374678792587939_2967861489678101225_n.jpg" alt="Tree frog macro" loading="lazy" referrerpolicy="no-referrer" data-full="assets/486954031_9374678792587939_2967861489678101225_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/487540866_9386149094774242_7586784268032933141_n.jpg" alt="Water texture" loading="lazy" referrerpolicy="no-referrer" data-full="assets/487540866_9386149094774242_7586784268032933141_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/487540866_9386149094774242_7586784268032933141_n.jpg" alt="Fishing pier over calm water" loading="lazy" referrerpolicy="no-referrer" data-full="assets/487540866_9386149094774242_7586784268032933141_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/487856904_9421875574534927_8178142265806310282_n.jpg" alt="Waterfall" loading="lazy" referrerpolicy="no-referrer" data-full="assets/487856904_9421875574534927_8178142265806310282_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/487856904_9421875574534927_8178142265806310282_n.jpg" alt="Waterfall in garden" loading="lazy" referrerpolicy="no-referrer" data-full="assets/487856904_9421875574534927_8178142265806310282_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/488268861_9421873701201781_6104368420129370523_n.jpg" alt="Landscape detail" loading="lazy" referrerpolicy="no-referrer" data-full="assets/488268861_9421873701201781_6104368420129370523_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/488268861_9421873701201781_6104368420129370523_n.jpg" alt="Pickerelweed field" loading="lazy" referrerpolicy="no-referrer" data-full="assets/488268861_9421873701201781_6104368420129370523_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/488937822_9424478430941308_8228624630649495844_n.jpg" alt="Shoreline" loading="lazy" referrerpolicy="no-referrer" data-full="assets/488937822_9424478430941308_8228624630649495844_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/488937822_9424478430941308_8228624630649495844_n.jpg" alt="Japanese garden lake panorama" loading="lazy" referrerpolicy="no-referrer" data-full="assets/488937822_9424478430941308_8228624630649495844_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/512695232_1248145137004353_1579352895975609707_n.jpg" alt="Sky layers" loading="lazy" referrerpolicy="no-referrer" data-full="assets/512695232_1248145137004353_1579352895975609707_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/512695232_1248145137004353_1579352895975609707_n.jpg" alt="Iguana head-on close-up" loading="lazy" referrerpolicy="no-referrer" data-full="assets/512695232_1248145137004353_1579352895975609707_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/513558975_1248139847004882_6552134915611200022_n.jpg" alt="Texture" loading="lazy" referrerpolicy="no-referrer" data-full="assets/513558975_1248139847004882_6552134915611200022_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/513558975_1248139847004882_6552134915611200022_n.jpg" alt="Green heron hunting in marsh" loading="lazy" referrerpolicy="no-referrer" data-full="assets/513558975_1248139847004882_6552134915611200022_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/513825336_1248139760338224_8182710943771384829_n.jpg" alt="Light play" loading="lazy" referrerpolicy="no-referrer" data-full="assets/513825336_1248139760338224_8182710943771384829_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/513825336_1248139760338224_8182710943771384829_n.jpg" alt="Golden bokeh foliage" loading="lazy" referrerpolicy="no-referrer" data-full="assets/513825336_1248139760338224_8182710943771384829_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/552910285_1319090733243126_6024900471807888045_n.jpg" alt="Coast" loading="lazy" referrerpolicy="no-referrer" data-full="assets/552910285_1319090733243126_6024900471807888045_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/552910285_1319090733243126_6024900471807888045_n.jpg" alt="Zen garden waterfall" loading="lazy" referrerpolicy="no-referrer" data-full="assets/552910285_1319090733243126_6024900471807888045_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/553239145_1319090976576435_6625720396490624142_n.jpg" alt="Wave" loading="lazy" referrerpolicy="no-referrer" data-full="assets/553239145_1319090976576435_6625720396490624142_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/553239145_1319090976576435_6625720396490624142_n.jpg" alt="Scarlet sunset silhouette" loading="lazy" referrerpolicy="no-referrer" data-full="assets/553239145_1319090976576435_6625720396490624142_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/558494119_10241584396893785_8721236944893235527_n.jpg" alt="Sand lines" loading="lazy" referrerpolicy="no-referrer" data-full="assets/558494119_10241584396893785_8721236944893235527_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/558494119_10241584396893785_8721236944893235527_n.jpg" alt="Orb-weaver spider against sky" loading="lazy" referrerpolicy="no-referrer" data-full="assets/558494119_10241584396893785_8721236944893235527_n.jpg">
       </figure>
-      <figure class="masonry-item" data-scroll>
-        <img src="assets/558917230_10241584464375472_5895222120379114555_n.jpg" alt="Sunset" loading="lazy" referrerpolicy="no-referrer" data-full="assets/558917230_10241584464375472_5895222120379114555_n.jpg">
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/558917230_10241584464375472_5895222120379114555_n.jpg" alt="Banyan-lined road" loading="lazy" referrerpolicy="no-referrer" data-full="assets/558917230_10241584464375472_5895222120379114555_n.jpg">
       </figure>
 
     </div>
@@ -262,6 +334,14 @@
       <h2>Let's Work Together</h2>
       <p>Available for commissions, prints, and licensing inquiries</p>
       <a href="mailto:jferrisfl@gmail.com" class="cta-button">Get In Touch</a>
+
+      <!-- Optional no-backend contact form (replace Formspree ID) -->
+      <form class="contact" action="https://formspree.io/f/your-id" method="POST">
+        <input type="email" name="email" placeholder="Your email" required>
+        <textarea name="message" rows="5" placeholder="Project details" required></textarea>
+        <button type="submit" class="cta-button">Send</button>
+      </form>
+
       <p style="margin-top:14px;font-size:16px;color:#bbb;">
         Or email me directly:
         <a href="mailto:jferrisfl@gmail.com" style="color:#fff;text-decoration:underline;">jferrisfl@gmail.com</a>
@@ -288,6 +368,9 @@
     </div>
   </footer>
 
+  <!-- Back to top -->
+  <button id="toTop" aria-label="Back to top">↑</button>
+
   <script>
     // Reveal on scroll
     const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.2,rootMargin:'0px 0px -100px 0px'});
@@ -303,11 +386,14 @@
       }
     });
 
-    // Navbar shrink
+    // Navbar shrink + back to top toggle
+    const navbar=document.getElementById('navbar');
+    const toTop=document.getElementById('toTop');
     window.addEventListener('scroll',()=>{
-      const navbar=document.getElementById('navbar');
       if(window.scrollY>50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
+      if(window.scrollY>600) toTop.classList.add('show'); else toTop.classList.remove('show');
     });
+    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
     // Smooth anchors
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -336,6 +422,30 @@
       lb.addEventListener('click',(e)=>{ if(e.target===lb) close(); });
       lbClose.addEventListener('click',close);
       document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') close(); });
+
+      // Arrow navigation
+      document.addEventListener('keydown', e=>{
+        if(!lb.classList.contains('open')) return;
+        const imgs=[...document.querySelectorAll('#masonry-gallery img')];
+        const currentIndex=imgs.findIndex(i=> (i.dataset.full||i.src)===lbImg.src);
+        if(currentIndex<0) return;
+        if(e.key==='ArrowRight'){ imgs[(currentIndex+1)%imgs.length].click(); }
+        if(e.key==='ArrowLeft'){ imgs[(currentIndex-1+imgs.length)%imgs.length].click(); }
+      });
+    })();
+
+    // Gallery filters
+    (function(){
+      const buttons = document.querySelectorAll('[data-filter]');
+      const items = document.querySelectorAll('.masonry-item');
+      buttons.forEach(b=>b.addEventListener('click',()=>{
+        buttons.forEach(x=>x.classList.remove('active')); b.classList.add('active');
+        const tag=b.dataset.filter;
+        items.forEach(it=>{
+          const tags=(it.dataset.tags||'').split(',').map(s=>s.trim());
+          it.style.display = (tag==='all' || tags.includes(tag)) ? '' : 'none';
+        });
+      }));
     })();
   </script>
 </body>
