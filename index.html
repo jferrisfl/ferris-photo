@@ -48,7 +48,6 @@
     body{background:#0b0b0b;color:#fff;font-family:'Montserrat',sans-serif;overflow-x:hidden}
     h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600}
 
-    /* Skip link (a11y) */
     .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip:focus{position:fixed;left:20px;top:20px;background:#fff;color:#000;padding:10px 14px;border-radius:8px;z-index:3000}
 
@@ -71,7 +70,7 @@
     .hero p{font-size:clamp(16px,2vw,24px);font-weight:300;color:#ccc;text-shadow:0 4px 16px rgba(0,0,0,.55)}
     @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
 
-    /* Scroll block */
+    /* Sections */
     .scroll-section{min-height:90vh;display:flex;align-items:center;justify-content:center;position:relative;padding:100px 24px}
     .image-reveal{width:100%;max-width:1400px;height:70vh;position:relative;overflow:hidden;border-radius:24px;border:1px solid #161616;opacity:0;transform:scale(.94);box-shadow:0 15px 45px rgba(0,0,0,.5);transition:all 1s ease}
     .image-reveal.visible{opacity:1;transform:scale(1)}
@@ -82,7 +81,6 @@
     .image-caption h2{font-size:clamp(34px,4vw,56px)}
     .image-caption p{font-size:16px;color:#ccc}
 
-    /* Parallax about */
     .parallax-section{height:90vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
     .parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background:url("assets/513825336_1248139760338224_8182710943771384829_n.jpg") center/cover no-repeat;transform:translateY(0)}
     .parallax-content{position:relative;z-index:1;text-align:center;padding:50px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:1px solid #161616;border-radius:24px;max-width:1000px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
@@ -92,7 +90,7 @@
     .about-text{text-align:left}
     @media (max-width:900px){.about-wrap{grid-template-columns:1fr}.about-text{text-align:center}}
 
-    /* Gallery (masonry) */
+    /* Gallery */
     .gallery-section{padding:100px 24px;background:#0b0b0b}
     .gallery-header{text-align:center;margin-bottom:24px}
     .gallery-header h2{font-size:clamp(38px,5vw,60px)}
@@ -134,10 +132,11 @@
     form.contact input, form.contact textarea{background:#0f0f0f;color:#fff;border:1px solid #222;border-radius:12px;padding:14px;font:inherit}
     form.contact button{justify-self:center}
 
-    /* Status line */
-    #formStatus{display:none;margin:12px auto 0;max-width:640px;text-align:center;font-size:14px}
-    .ok{color:#9ae6b4}
-    .err{color:#feb2b2}
+    /* Success banner */
+    .success-banner{
+      display:none;margin:14px auto 0;max-width:640px;padding:12px 16px;border-radius:10px;
+      background:#114b3a;color:#c9f3df;border:1px solid #1f6a54;text-align:center;font-size:14px
+    }
 
     /* Back to top */
     #toTop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #2a2a2a;background:#0f0f0f;color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:1200}
@@ -163,7 +162,6 @@
   <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <!-- swapped to logo -->
       <img class="hero-portrait" src="assets/logo.jpg" alt="" referrerpolicy="no-referrer">
       <h1>Ferris Photography</h1>
       <p>Capturing the raw beauty of wildlife and landscapes</p>
@@ -236,7 +234,7 @@
 
     <div class="masonry" id="masonry-gallery">
 
-      <!-- NEW images -->
+      <!-- New images -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/bird.jpg" alt="Bird" loading="lazy" referrerpolicy="no-referrer" data-full="assets/bird.jpg">
       </figure>
@@ -250,7 +248,7 @@
         <img src="assets/moth.jpg" alt="Moth" loading="lazy" referrerpolicy="no-referrer" data-full="assets/moth.jpg">
       </figure>
 
-      <!-- Existing set (tagged) -->
+      <!-- Existing set -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/FER07219.jpg" alt="FER07219" loading="lazy" referrerpolicy="no-referrer" data-full="assets/FER07219.jpg">
       </figure>
@@ -327,17 +325,20 @@
       <p>Available for commissions, prints, and licensing inquiries</p>
       <a href="mailto:jferrisfl@gmail.com" class="cta-button">Get In Touch</a>
 
-      <!-- Status line -->
-      <p id="formStatus"></p>
+      <!-- Success banner -->
+      <div id="sentBanner" class="success-banner">Thanks! Your message was sent.</div>
 
-      <!-- Formspree (AJAX with mailto fallback) -->
-      <form id="contactForm" class="contact" action="https://formspree.io/f/mrbyyzav" method="POST" novalidate>
-        <input id="name"  type="text"   name="name"  placeholder="Your name"  required>
-        <input id="email" type="email"  name="email" placeholder="Your email" required>
-        <textarea id="msg" name="message" rows="5" placeholder="Project details" required></textarea>
+      <!-- Working: FormSubmit (no account required). First submit may email you a verification link. -->
+      <form class="contact" action="https://formsubmit.co/jferrisfl@gmail.com" method="POST">
+        <input type="text"   name="name"  placeholder="Your name"  required>
+        <input type="email"  name="email" placeholder="Your email" required>
+        <textarea name="message" rows="5" placeholder="Project details" required></textarea>
 
+        <!-- Options -->
         <input type="hidden" name="_subject" value="New inquiry from Ferris Photography">
-        <input type="text"   name="_gotcha" style="display:none">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://jferrisfl.github.io/ferris-photo/?sent=1">
 
         <button type="submit" class="cta-button">Send</button>
       </form>
@@ -423,7 +424,6 @@
       lbClose.addEventListener('click',close);
       document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') close(); });
 
-      // Arrow navigation
       document.addEventListener('keydown', e=>{
         if(!lb.classList.contains('open')) return;
         const imgs=[...document.querySelectorAll('#masonry-gallery img')];
@@ -448,50 +448,13 @@
       }));
     })();
 
-    // === Formspree AJAX with mailto fallback ===
+    // Show success banner if redirected with ?sent=1
     (function(){
-      const form = document.getElementById('contactForm');
-      const status = document.getElementById('formStatus');
-
-      function showStatus(msg, ok=false){
-        status.style.display='block';
-        status.className = ok ? 'ok' : 'err';
-        status.textContent = msg;
+      const params=new URLSearchParams(window.location.search);
+      if(params.get('sent')==='1'){
+        const b=document.getElementById('sentBanner');
+        if(b) b.style.display='block';
       }
-
-      function mailtoFallback(){
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('msg').value.trim();
-        const subject = encodeURIComponent('New inquiry from Ferris Photography');
-        const body = encodeURIComponent(
-          `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-        );
-        window.location.href = `mailto:jferrisfl@gmail.com?subject=${subject}&body=${body}`;
-      }
-
-      form.addEventListener('submit', async (e)=>{
-        e.preventDefault();
-        showStatus('Sending...', true);
-        try{
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
-          if(res.ok){
-            form.reset();
-            showStatus('Thanks! Your message was sent.', true);
-          } else {
-            // If Formspree returns any error (e.g., "Form not found"), fall back to mailto
-            showStatus('Form service unavailable. Opening your email app...', false);
-            mailtoFallback();
-          }
-        }catch(err){
-          showStatus('Network issue. Opening your email app...', false);
-          mailtoFallback();
-        }
-      });
     })();
   </script>
 </body>
