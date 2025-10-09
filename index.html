@@ -220,12 +220,13 @@
     <div class="gallery-header">
       <h2>Featured Work</h2>
       <p class="gallery-sub">Wildlife & landscapes from South Florida</p>
-      <div class="gallery-filters" aria-label="Filter gallery">
-        <button data-filter="all" class="active">All</button>
-        <button data-filter="wildlife">Wildlife</button>
-        <button data-filter="landscape">Landscape</button>
-        <button data-filter="macro">Macro</button>
-      </div>
+    </div>
+
+    <div class="gallery-filters" aria-label="Filter gallery">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="wildlife">Wildlife</button>
+      <button data-filter="landscape">Landscape</button>
+      <button data-filter="macro">Macro</button>
     </div>
 
     <div class="masonry" id="masonry-gallery">
@@ -321,18 +322,68 @@
       <p>Available for commissions, prints, and licensing inquiries</p>
       <a href="mailto:jferrisfl@gmail.com" class="cta-button">Get In Touch</a>
 
-      <!-- Formspree AJAX form -->
+      <!-- ===== PLAIN FORMSPREE FORM (use this first to verify) ===== -->
+      <form class="contact" action="https://formspree.io/f/mrbyyzav" method="POST">
+        <label style="display:block">
+          Your email:
+          <input type="email" name="email" required>
+        </label>
+        <label style="display:block">
+          Your message:
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+
+        <!-- Helpful extras -->
+        <input type="hidden" name="_subject" value="New inquiry from Ferris Photography">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://jferrisfl.github.io/ferris-photo/?sent=1">
+
+        <button type="submit" class="cta-button">Send</button>
+      </form>
+
+      <!--
+      ===== OPTIONAL: AJAX VERSION (enable AFTER the plain form works) =====
       <form id="contactForm" class="contact" action="https://formspree.io/f/mrbyyzav" method="POST">
         <input type="text"   name="name"  placeholder="Your name"  required>
         <input type="email"  name="email" placeholder="Your email" required>
         <textarea name="message" rows="5" placeholder="Project details" required></textarea>
-
         <input type="hidden" name="_subject" value="New inquiry from Ferris Photography">
-        <input type="text"   name="_gotcha" style="display:none"> <!-- spam honeypot -->
-
+        <input type="text"   name="_gotcha" style="display:none">
         <button type="submit" class="cta-button">Send</button>
         <p id="formStatus" style="display:none;color:#9ae6b4;text-align:center;margin-top:8px;">Thanks! Your message was sent.</p>
       </form>
+
+      <script>
+      // Remove the HTML comment wrappers around this script and the form above to enable AJAX
+      document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const status = document.getElementById('formStatus');
+        status.style.display = 'block';
+        status.style.color = '#ddd';
+        status.textContent = 'Sending...';
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.reset();
+            status.style.color = '#9ae6b4';
+            status.textContent = 'Thanks! Your message was sent.';
+          } else {
+            const data = await res.json().catch(()=>({}));
+            status.style.color = '#feb2b2';
+            status.textContent = (data && data.error) ? data.error : 'Something went wrong. Please email me: jferrisfl@gmail.com';
+          }
+        } catch {
+          status.style.color = '#feb2b2';
+          status.textContent = 'Network error. Please email me: jferrisfl@gmail.com';
+        }
+      });
+      </script>
+      -->
 
       <p style="margin-top:14px;font-size:16px;color:#bbb;">
         Or email me directly:
@@ -438,36 +489,6 @@
           it.style.display = (tag==='all' || tags.includes(tag)) ? '' : 'none';
         });
       }));
-    })();
-
-    // Formspree AJAX submit
-    (function(){
-      const form = document.getElementById('contactForm');
-      const status = document.getElementById('formStatus');
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        status.style.display = 'block';
-        status.style.color = '#ddd';
-        status.textContent = 'Sending...';
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
-          if (res.ok) {
-            form.reset();
-            status.style.color = '#9ae6b4';
-            status.textContent = 'Thanks! Your message was sent.';
-          } else {
-            status.style.color = '#feb2b2';
-            status.textContent = 'Something went wrong. Please email me: jferrisfl@gmail.com';
-          }
-        } catch (err) {
-          status.style.color = '#feb2b2';
-          status.textContent = 'Network error. Please email me: jferrisfl@gmail.com';
-        }
-      });
     })();
   </script>
 </body>
