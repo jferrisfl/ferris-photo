@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="referrer" content="no-referrer" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ferris Photography | Wildlife & Landscapes</title>
+  <title>Ferris Photography | Wildlife, Landscapes & Flowers</title>
 
   <!-- SEO -->
-  <meta name="description" content="Ferris Photography — wildlife and landscape photography from South Florida. Commissions, prints, and licensing."/>
+  <meta name="description" content="Ferris Photography — wildlife, landscape, macro, and flower photography from South Florida. Commissions, prints, and licensing."/>
   <link rel="canonical" href="https://jferrisfl.github.io/ferris-photo/"/>
 
   <!-- Social share -->
   <meta property="og:title" content="Ferris Photography"/>
-  <meta property="og:description" content="Wildlife & landscapes from South Florida"/>
+  <meta property="og:description" content="Wildlife, landscapes, macro & flowers from South Florida"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://jferrisfl.github.io/ferris-photo/"/>
   <meta property="og:image" content="assets/share.jpg"/>
@@ -153,7 +153,6 @@
   <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <!-- Your logo image -->
       <img class="hero-portrait" src="assets/logo.jpg" alt="">
       <h1>Ferris Photography</h1>
       <p>Capturing the raw beauty of wildlife and landscapes</p>
@@ -210,11 +209,22 @@
     </div>
   </section>
 
+  <!-- Flowers (new section) -->
+  <section class="scroll-section">
+    <div class="image-reveal" data-scroll>
+      <img src="assets/flower2.jpg" alt="Flower study" loading="lazy">
+      <div class="image-caption">
+        <h2>Flowers</h2>
+        <p>Color, form, and delicate detail</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Featured Work (Gallery) -->
   <section class="gallery-section" id="portfolio" aria-label="Featured Work">
     <div class="gallery-header">
       <h2>Featured Work</h2>
-      <p class="gallery-sub">Wildlife & landscapes from South Florida</p>
+      <p class="gallery-sub">Browse by category or view them all.</p>
     </div>
 
     <div class="gallery-filters" aria-label="Filter gallery">
@@ -222,6 +232,7 @@
       <button data-filter="wildlife">Wildlife</button>
       <button data-filter="landscape">Landscape</button>
       <button data-filter="macro">Macro</button>
+      <button data-filter="flowers">Flowers</button>
     </div>
 
     <div class="masonry" id="masonry-gallery">
@@ -245,11 +256,11 @@
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/513558975_1248139847004882_6552134915611200022_n.jpg" alt="Bird" loading="lazy" data-full="assets/513558975_1248139847004882_6552134915611200022_n.jpg">
       </figure>
-      <!-- Lizard moved to Wildlife -->
+      <!-- Lizard → Wildlife -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/512695232_1248145137004353_1579352895975609707_n.jpg" alt="Lizard on branch" loading="lazy" data-full="assets/512695232_1248145137004353_1579352895975609707_n.jpg">
       </figure>
-      <!-- Light play (leave as wildlife unless you prefer landscape) -->
+      <!-- Light play (leave in wildlife) -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/513825336_1248139760338224_8182710943771384829_n.jpg" alt="Light play" loading="lazy" data-full="assets/513825336_1248139760338224_8182710943771384829_n.jpg">
       </figure>
@@ -276,6 +287,10 @@
       <figure class="masonry-item" data-scroll data-tags="landscape">
         <img src="assets/558917230_10241584464375472_5895222120379114555_n.jpg" alt="Sunset" loading="lazy" data-full="assets/558917230_10241584464375472_5895222120379114555_n.jpg">
       </figure>
+      <!-- Black & white beach (filename has spaces; URL encoded) -->
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/black%20and%20white%20beach.jpg" alt="Black and white beach" loading="lazy" data-full="assets/black%20and%20white%20beach.jpg">
+      </figure>
 
       <!-- MACRO -->
       <figure class="masonry-item" data-scroll data-tags="macro">
@@ -285,10 +300,28 @@
         <img src="assets/488937822_9424478430941308_8228624630649495844_n.jpg" alt="Grasshoppers macro" loading="lazy" data-full="assets/488937822_9424478430941308_8228624630649495844_n.jpg">
       </figure>
       <figure class="masonry-item" data-scroll data-tags="macro">
-        <img src="assets/FER07295.jpg" alt="FER07295 macro" loading="lazy" data-full="assets/FER07295.jpg">
+        <img src="assets/FER07295.jpg" alt="Macro detail" loading="lazy" data-full="assets/FER07295.jpg">
+      </figure>
+      <!-- New macro additions -->
+      <figure class="masonry-item" data-scroll data-tags="macro">
+        <img src="assets/spider2.jpg" alt="Spider macro" loading="lazy" data-full="assets/spider2.jpg">
       </figure>
       <figure class="masonry-item" data-scroll data-tags="macro">
-        <img src="assets/558494119_10241584396893785_8721236944893235527_n.jpg" alt="Sand lines macro" loading="lazy" data-full="assets/558494119_10241584396893785_8721236944893235527_n.jpg">
+        <img src="assets/grasshopper2.jpg" alt="Grasshopper macro" loading="lazy" data-full="assets/grasshopper2.jpg">
+      </figure>
+
+      <!-- FLOWERS -->
+      <figure class="masonry-item" data-scroll data-tags="flowers">
+        <img src="assets/flower2.jpg" alt="Flower 2" loading="lazy" data-full="assets/flower2.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="flowers">
+        <img src="assets/flower3.jpg" alt="Flower 3" loading="lazy" data-full="assets/flower3.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="flowers">
+        <img src="assets/flower4.jpg" alt="Flower 4" loading="lazy" data-full="assets/flower4.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="flowers">
+        <img src="assets/flower5.jpg" alt="Flower 5" loading="lazy" data-full="assets/flower5.jpg">
       </figure>
     </div>
 
