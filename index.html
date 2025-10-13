@@ -2,174 +2,466 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ferris Photography | Wildlife & Aerial Imagery</title>
+  <meta name="referrer" content="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ferris Photography | Wildlife, Aerial, Real Estate, Events</title>
 
-  <meta name="description" content="Wildlife, landscape, aerial, and event photography by Jeremy Ferris — based in South Florida." />
-  <link rel="icon" href="assets/favicon.ico" />
+  <!-- SEO -->
+  <meta name="description" content="Ferris Photography — wildlife, aerial drone, real estate, portrait and event photography across South Florida."/>
+  <link rel="canonical" href="https://jferrisfl.github.io/ferris-photo/"/>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
+  <!-- Social share -->
+  <meta property="og:title" content="Ferris Photography"/>
+  <meta property="og:description" content="Wildlife • Drone • Real Estate • Portraits & Events"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://jferrisfl.github.io/ferris-photo/"/>
+  <meta property="og:image" content="assets/share.jpg"/>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jeremy Ferris",
+    "url": "https://jferrisfl.github.io/ferris-photo/",
+    "sameAs": [
+      "https://www.facebook.com/jeremyferrisphotography",
+      "https://www.instagram.com/jeremyferrisphotography/"
+    ],
+    "image": "assets/portrait.jpg"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico">
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="assets/553239145_1319090976576435_6625720396490624142_n.jpg" imagesizes="100vw">
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{background:#0b0b0b;color:#fff;font-family:'Montserrat',sans-serif;overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
     h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600}
-    img{max-width:100%;height:auto;display:block}
 
-    nav{position:fixed;top:0;width:100%;z-index:1000;padding:20px 50px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);transition:.3s}
+    .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{position:fixed;left:20px;top:20px;background:#fff;color:#000;padding:10px 14px;border-radius:8px;z-index:3000}
+
+    /* Nav */
+    nav{position:fixed;top:0;width:100%;z-index:1000;padding:20px 50px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);border-bottom:1px solid #161616;transition:.3s}
     nav.scrolled{padding:14px 50px;background:rgba(0,0,0,.95)}
-    .logo{font-size:26px;letter-spacing:3px}
-    .nav-links{display:flex;gap:36px;list-style:none}
+    .logo{font-size:26px;letter-spacing:3px;font-family:'Cormorant Garamond',serif}
+    .nav-links{display:flex;gap:28px;list-style:none}
     .nav-links a{color:#fff;text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;opacity:.9}
     .nav-links a:hover{opacity:.75}
 
-    .hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#000}
-    .hero-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.7)),url("assets/553239145_1319090976576435_6625720396490624142_n.jpg") center/cover no-repeat}
-    .hero-content{position:relative;z-index:2;text-align:center;animation:fadeUp 1.2s ease forwards;opacity:0;transform:translateY(40px)}
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-    .hero img{width:200px;height:200px;border-radius:50%;object-fit:cover;margin-bottom:20px;border:3px solid rgba(255,255,255,.3)}
-    .hero h1{font-size:clamp(40px,6vw,80px);background:linear-gradient(135deg,#fff,#888);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .hero p{color:#ccc;font-size:18px;margin-top:10px}
+    /* Hero */
+    .hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0a0a0a}
+    .hero-bg{position:absolute;inset:0;background:
+      linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.78)),
+      url("assets/553239145_1319090976576435_6625720396490624142_n.jpg") center/cover no-repeat}
+    .hero-content{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;opacity:0;transform:translateY(30px);animation:fadeInUp 1.2s ease .1s forwards}
+    .hero-portrait{width:240px;height:240px;border-radius:50%;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.55);border:3px solid rgba(255,255,255,.35)}
+    .hero h1{font-size:clamp(44px,6vw,84px);font-weight:700;letter-spacing:-1.5px;margin-top:6px;background:linear-gradient(135deg,#fff 0%,#888 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 6px 24px rgba(0,0,0,.6)}
+    .hero p{font-size:clamp(16px,2vw,24px);font-weight:300;color:#ccc;text-shadow:0 4px 16px rgba(0,0,0,.55)}
+    @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
 
-    section{padding:100px 24px;max-width:1400px;margin:auto}
-    .about,.services{text-align:center;margin-top:40px}
-    .about img{border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.4);margin-bottom:30px}
+    /* Sections */
+    section{padding:100px 24px}
+    .scroll-section{min-height:60vh;display:flex;align-items:center;justify-content:center;position:relative}
+    .image-reveal{width:100%;max-width:1400px;height:70vh;position:relative;overflow:hidden;border-radius:24px;border:1px solid #161616;opacity:0;transform:scale(.94);box-shadow:0 15px 45px rgba(0,0,0,.5);transition:all 1s ease}
+    .image-reveal.visible{opacity:1;transform:scale(1)}
+    .image-reveal img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 1.5s ease}
+    .image-reveal.visible img{transform:scale(1)}
+    .image-caption{position:absolute;left:32px;bottom:32px;background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0));padding:14px 18px;border-radius:12px;opacity:0;transform:translateY(18px);transition:all .8s .4s}
+    .image-reveal.visible .image-caption{opacity:1;transform:translateY(0)}
+    .image-caption h2{font-size:clamp(34px,4vw,56px)}
+    .image-caption p{font-size:16px;color:#ccc}
 
-    .services-grid{display:grid;gap:24px;margin-top:40px}
-    @media(min-width:800px){.services-grid{grid-template-columns:repeat(3,1fr)}}
-    .service{background:#111;padding:30px;border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:.3s}
-    .service:hover{transform:translateY(-4px)}
-    .service h3{margin-bottom:12px;font-size:20px}
+    /* About (parallax) */
+    .parallax-section{height:90vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background:url("assets/513825336_1248139760338224_8182710943771384829_n.jpg") center/cover no-repeat;transform:translateY(0)}
+    .parallax-content{position:relative;z-index:1;text-align:center;padding:50px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:1px solid #161616;border-radius:24px;max-width:1000px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+    .about-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center;max-width:1100px}
+    .about-photo{border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+    .about-photo img{width:100%;height:auto}
+    .about-text{text-align:left}
+    @media (max-width:900px){.about-wrap{grid-template-columns:1fr}.about-text{text-align:center}}
 
-    .gallery-section{text-align:center;margin-top:60px}
-    .gallery-section h2{font-size:clamp(36px,5vw,60px);margin-bottom:20px}
-    .masonry{columns:1;column-gap:20px}
+    /* Services (minimal) */
+    .services-section{padding:100px 24px;text-align:center;background:#0b0b0b}
+    .services-section .title{font-size:clamp(38px,5vw,60px);margin-bottom:12px}
+    .services-list{font-size:20px;color:#ccc;letter-spacing:.5px}
+
+    /* Gallery */
+    .gallery-section{padding:100px 24px;background:#0b0b0b}
+    .gallery-header{text-align:center;margin-bottom:24px}
+    .gallery-header h2{font-size:clamp(38px,5vw,60px)}
+    .gallery-sub{color:#aaa;margin-top:6px}
+    .gallery-filters{margin:16px 0 24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .gallery-filters button{background:#0f0f0f;color:#eee;border:2px solid #fff;border-radius:999px;padding:10px 16px;cursor:pointer;font-size:14px}
+    .gallery-filters button.active{background:#fff;color:#000;border-color:#fff}
+    .masonry{columns:1;column-gap:24px;max-width:1400px;margin:0 auto}
+    .masonry-item{break-inside:avoid;margin-bottom:24px;border-radius:20px;overflow:hidden;border:1px solid #161616;box-shadow:0 8px 20px rgba(0,0,0,.35);opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s;position:relative;cursor:pointer}
+    .masonry-item.visible{opacity:1;transform:translateY(0)}
+    .masonry-item img{width:100%;display:block;filter:saturate(1.05) contrast(1.02);transition:transform .45s}
+    .masonry-item:hover img{transform:scale(1.02)}
     @media(min-width:700px){.masonry{columns:2}}
     @media(min-width:1024px){.masonry{columns:3}}
-    .masonry-item{break-inside:avoid;margin-bottom:20px;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.4);cursor:pointer;transition:.3s}
-    .masonry-item:hover{transform:scale(1.02)}
+    @media(min-width:1400px){.masonry{columns:4}}
+    .masonry-caption{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(0deg,rgba(0,0,0,.65),rgba(0,0,0,0));font-size:13px;color:#ddd}
 
+    /* Lightbox */
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:2000}
     .lightbox.open{display:flex}
-    .lightbox img{max-width:90vw;max-height:90vh;border-radius:12px}
-    .lb-close{position:absolute;top:20px;right:30px;font-size:36px;color:#fff;cursor:pointer}
+    .lightbox img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+    .lb-caption{position:absolute;bottom:28px;color:#ccc;font-size:14px;text-align:center;width:90%}
+    .lb-close{position:absolute;top:20px;right:24px;font-size:28px;color:#fff;cursor:pointer;user-select:none}
 
-    footer{text-align:center;padding:40px 0;border-top:1px solid #222;background:#0a0a0a}
-    footer a{color:#bbb;text-decoration:none}
-    .social{display:flex;gap:20px;justify-content:center;margin-top:10px}
-    .social a{color:#fff;font-size:20px}
+    /* Contact */
+    .contact-section{min-height:40vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;background:#000;text-align:center}
+    .cta-button{display:inline-block;padding:18px 50px;background:#fff;color:#000;text-decoration:none;border-radius:30px;font-size:16px;font-weight:600;transition:.3s}
+    .cta-button:hover{background:#ddd;transform:scale(1.05)}
+
+    /* Footer */
+    footer{padding:40px 24px;text-align:center;background:#0b0b0b;border-top:1px solid #161616}
+    footer p{color:#666;font-size:14px}
+    .social-links{display:flex;gap:18px;align-items:center;justify-content:center;margin-top:12px}
+    .social-links a{display:inline-flex;width:28px;height:28px;opacity:.9;transition:.2s;color:#fff}
+    .social-links a:hover{opacity:1;transform:translateY(-2px) scale(1.06)}
+    .social-links svg{width:100%;height:100%;fill:#fff}
+    .ig-icon{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+    /* Back to top */
+    #toTop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #2a2a2a;background:#0f0f0f;color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:1200}
+    #toTop.show{display:flex}
   </style>
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="logo">FERRIS</div>
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <a class="skip" href="#portfolio">Skip to gallery</a>
 
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <img src="assets/logo.jpg" alt="Ferris logo">
-    <h1>Ferris Photography</h1>
-    <p>Wildlife • Drone • Portrait • Events</p>
-  </div>
-</section>
+  <!-- Nav -->
+  <nav id="navbar">
+    <div class="logo">FERRIS</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<section class="about" id="about">
-  <img src="assets/portrait.jpg" alt="Jeremy Ferris portrait" width="300">
-  <h2>About Me</h2>
-  <p>I’m Jeremy Ferris — a South Florida-based photographer capturing the untamed beauty of nature, wildlife, and coastal life. I also work on aerial imagery, real estate, and event coverage.</p>
-</section>
-
-<section class="services" id="services">
-  <h2>Services</h2>
-  <div class="services-grid">
-    <div class="service">
-      <h3>Wildlife Photography</h3>
-      <p>Capturing raw, natural beauty in the wild.</p>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <img class="hero-portrait" src="assets/logo.jpg" alt="Ferris logo">
+      <h1>Ferris Photography</h1>
+      <p>Wildlife • Drone / Aerial • Real Estate • Events</p>
     </div>
-    <div class="service">
-      <h3>Aerial Drone Work</h3>
-      <p>Licensed drone pilot producing aerial videos and real estate photos.</p>
+  </section>
+
+  <!-- Wildlife highlight -->
+  <section class="scroll-section">
+    <div class="image-reveal" data-scroll>
+      <img src="assets/558494119_10241584396893785_8721236944893235527_n.jpg" alt="Orb-weaver spider on web" loading="lazy">
+      <div class="image-caption">
+        <h2>Wildlife</h2>
+        <p>Moments of untamed beauty</p>
+      </div>
     </div>
-    <div class="service">
-      <h3>Portraits & Events</h3>
-      <p>Professional portrait and event photography for schools, communities, and businesses.</p>
+  </section>
+
+  <!-- About (parallax) -->
+  <section class="parallax-section" id="about">
+    <div class="parallax-bg" data-parallax></div>
+    <div class="parallax-content">
+      <div class="about-wrap">
+        <div class="about-photo">
+          <img src="assets/portrait.jpg" alt="Portrait of Jeremy Ferris">
+        </div>
+        <div class="about-text">
+          <h2>Beyond the Lens</h2>
+          <p>Every photograph tells a story of patience, passion, and the profound connection between nature and art.</p>
+          <div class="social-links" role="navigation" aria-label="Social links">
+            <a href="https://www.facebook.com/jeremyferrisphotography" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 320 512" aria-hidden="true"><path d="M279.14 288l14.22-92.66h-88.91V127.9c0-25.35 12.42-50.06 52.24-50.06H295V6.26S270.43 0 246.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H56v92.66h69.28V512h100.2V288z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/jeremyferrisphotography/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" class="ig-icon" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="17.5" cy="6.5" r="1.2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="gallery-section" id="gallery">
-  <h2>Wildlife</h2>
-  <div class="masonry">
-    <div class="masonry-item"><img src="assets/FER07219.jpg"></div>
-    <div class="masonry-item"><img src="assets/FER07277.jpg"></div>
-    <div class="masonry-item"><img src="assets/513558975_1248139847004882_6552134915611200022_n.jpg"></div>
-  </div>
+  <!-- Services (minimal) -->
+  <section class="services-section" id="services" data-scroll>
+    <h2 class="title">Services</h2>
+    <p class="services-list">Wildlife • Drone / Aerial • Real Estate • Portraits & Events</p>
+  </section>
 
-  <h2>Landscape</h2>
-  <div class="masonry">
-    <div class="masonry-item"><img src="assets/552910285_1319090733243126_6024900471807888045_n.jpg"></div>
-    <div class="masonry-item"><img src="assets/553239145_1319090976576435_6625720396490624142_n.jpg"></div>
-    <div class="masonry-item"><img src="assets/558917230_10241584464375472_5895222120379114555_n.jpg"></div>
-  </div>
+  <!-- Landscapes highlight -->
+  <section class="scroll-section">
+    <div class="image-reveal" data-scroll>
+      <img src="assets/552910285_1319090733243126_6024900471807888045_n.jpg" alt="Garden pond and bridge landscape" loading="lazy">
+      <div class="image-caption">
+        <h2>Landscapes</h2>
+        <p>Where earth meets sky</p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Macro</h2>
-  <div class="masonry">
-    <div class="masonry-item"><img src="assets/486954031_9374678792587939_2967861489678101225_n.jpg"></div>
-    <div class="masonry-item"><img src="assets/488937822_9424478430941308_8228624630649495844_n.jpg"></div>
-    <div class="masonry-item"><img src="assets/grasshopper2.jpg"></div>
-    <div class="masonry-item"><img src="assets/spider2.jpg"></div>
-  </div>
+  <!-- Flowers highlight -->
+  <section class="scroll-section">
+    <div class="image-reveal" data-scroll>
+      <img src="assets/flower2.jpg" alt="Flower study" loading="lazy">
+      <div class="image-caption">
+        <h2>Flowers</h2>
+        <p>Color, form, and delicate detail</p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Flowers</h2>
-  <div class="masonry">
-    <div class="masonry-item"><img src="assets/flower2.jpg"></div>
-    <div class="masonry-item"><img src="assets/flower3.jpg"></div>
-    <div class="masonry-item"><img src="assets/flower4.jpg"></div>
-    <div class="masonry-item"><img src="assets/flower5.jpg"></div>
-    <div class="masonry-item"><img src="assets/black and white beach.jpg"></div>
-  </div>
-</section>
+  <!-- Featured Work (Gallery) -->
+  <section class="gallery-section" id="portfolio" aria-label="Featured Work">
+    <div class="gallery-header">
+      <h2>Featured Work</h2>
+      <p class="gallery-sub">Browse by category or view them all.</p>
+    </div>
 
-<section id="contact" style="text-align:center;padding:100px 24px;">
-  <h2>Contact</h2>
-  <p>Available for collaborations, prints, and photography inquiries.</p>
-  <p style="margin-top:20px;font-size:18px;">
-    <a href="mailto:jferrisfl@gmail.com" style="color:#fff;text-decoration:underline;">jferrisfl@gmail.com</a>
-  </p>
-</section>
+    <div class="gallery-filters" aria-label="Filter gallery">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="wildlife">Wildlife</button>
+      <button data-filter="landscape">Landscape</button>
+      <button data-filter="macro">Macro</button>
+      <button data-filter="flowers">Flowers</button>
+    </div>
 
-<footer>
-  <p>&copy; 2025 Ferris Photography — All Rights Reserved</p>
-  <div class="social">
-    <a href="https://www.facebook.com/jeremyferrisphotography" target="_blank">Facebook</a>
-    <a href="https://www.instagram.com/jeremyferrisphotography/" target="_blank">Instagram</a>
-  </div>
-</footer>
+    <div class="masonry" id="masonry-gallery">
 
-<div class="lightbox" id="lightbox">
-  <span class="lb-close" id="lbClose">&times;</span>
-  <img id="lbImg" src="" alt="">
-</div>
+      <!-- ========== WILDLIFE ========== -->
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07219.jpg" alt="Wildlife FER07219" loading="lazy" data-full="assets/FER07219.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07254.jpg" alt="Wildlife FER07254" loading="lazy" data-full="assets/FER07254.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07277.jpg" alt="Wildlife FER07277" loading="lazy" data-full="assets/FER07277.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07301.jpg" alt="Wildlife FER07301" loading="lazy" data-full="assets/FER07301.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/FER07307.jpg" alt="Wildlife FER07307" loading="lazy" data-full="assets/FER07307.jpg">
+      </figure>
+      <!-- Bird → Wildlife -->
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/513558975_1248139847004882_6552134915611200022_n.jpg" alt="Bird" loading="lazy" data-full="assets/513558975_1248139847004882_6552134915611200022_n.jpg">
+      </figure>
+      <!-- Lizard → Wildlife -->
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/512695232_1248145137004353_1579352895975609707_n.jpg" alt="Lizard" loading="lazy" data-full="assets/512695232_1248145137004353_1579352895975609707_n.jpg">
+      </figure>
+      <!-- Light play still in Wildlife -->
+      <figure class="masonry-item" data-scroll data-tags="wildlife">
+        <img src="assets/513825336_1248139760338224_8182710943771384829_n.jpg" alt="Light play" loading="lazy" data-full="assets/513825336_1248139760338224_8182710943771384829_n.jpg">
+      </figure>
 
-<script>
-const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>50)});
-const lb=document.getElementById('lightbox');const lbImg=document.getElementById('lbImg');const lbClose=document.getElementById('lbClose');
-document.querySelectorAll('.masonry-item img').forEach(img=>{img.addEventListener('click',()=>{lb.classList.add('open');lbImg.src=img.src;});});
-lbClose.addEventListener('click',()=>lb.classList.remove('open'));
-lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('open')});
-</script>
+      <!-- ========== LANDSCAPE ========== -->
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/FER07228.jpg" alt="Landscape FER07228" loading="lazy" data-full="assets/FER07228.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/487540866_9386149094774242_7586784268032933141_n.jpg" alt="Water texture" loading="lazy" data-full="assets/487540866_9386149094774242_7586784268032933141_n.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/487856904_9421875574534927_8178142265806310282_n.jpg" alt="Waterfall" loading="lazy" data-full="assets/487856904_9421875574534927_8178142265806310282_n.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/488268861_9421873701201781_6104368420129370523_n.jpg" alt="Landscape detail" loading="lazy" data-full="assets/488268861_9421873701201781_6104368420129370523_n.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/552910285_1319090733243126_6024900471807888045_n.jpg" alt="Coast" loading="lazy" data-full="assets/552910285_1319090733243126_6024900471807888045_n.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/553239145_1319090976576435_6625720396490624142_n.jpg" alt="Wave" loading="lazy" data-full="assets/553239145_1319090976576435_6625720396490624142_n.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/558917230_10241584464375472_5895222120379114555_n.jpg" alt="Sunset" loading="lazy" data-full="assets/558917230_10241584464375472_5895222120379114555_n.jpg">
+      </figure>
+      <!-- Black & white beach → Landscape (note encoded space) -->
+      <figure class="masonry-item" data-scroll data-tags="landscape">
+        <img src="assets/black%20and%20white%20beach.jpg" alt="Black and white beach" loading="lazy" data-full="assets/black%20and%20white%20beach.jpg">
+      </figure>
 
+      <!-- ========== MACRO ========== -->
+      <figure class="masonry-item" data-scroll data-tags="macro">
+        <img src="assets/486954031_9374678792587939_2967861489678101225_n.jpg" alt="Frog macro" loading="lazy" data-full="assets/486954031_9374678792587939_2967861489678101225_n.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="macro">
+        <img src="assets/488937822_9424478430941308_8228624630649495844_n.jpg" alt="Grasshoppers macro" loading="lazy" data-full="assets/488937822_9424478430941308_8228624630649495844_n.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="macro">
+        <img src="assets/FER07295.jpg" alt="Macro detail FER07295" loading="lazy" data-full="assets/FER07295.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="macro">
+        <img src="assets/spider2.jpg" alt="Spider macro" loading="lazy" data-full="assets/spider2.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="macro">
+        <img src="assets/grasshopper2.jpg" alt="Grasshopper macro 2" loading="lazy" data-full="assets/grasshopper2.jpg">
+      </figure>
+
+      <!-- ========== FLOWERS ========== -->
+      <figure class="masonry-item" data-scroll data-tags="flowers">
+        <img src="assets/flower2.jpg" alt="Flower 2" loading="lazy" data-full="assets/flower2.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="flowers">
+        <img src="assets/flower3.jpg" alt="Flower 3" loading="lazy" data-full="assets/flower3.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="flowers">
+        <img src="assets/flower4.jpg" alt="Flower 4" loading="lazy" data-full="assets/flower4.jpg">
+      </figure>
+      <figure class="masonry-item" data-scroll data-tags="flowers">
+        <img src="assets/flower5.jpg" alt="Flower 5" loading="lazy" data-full="assets/flower5.jpg">
+      </figure>
+
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+      <div class="lb-close" id="lbClose" role="button" aria-label="Close">×</div>
+      <img id="lbImg" src="" alt="Expanded view"/>
+      <div class="lb-caption" id="lbCap"></div>
+    </div>
+  </section>
+
+  <!-- Contact (email only) -->
+  <section class="contact-section" id="contact" aria-label="Contact">
+    <div class="contact-content">
+      <h2>Let's Work Together</h2>
+      <p>Available for commissions, prints, and event coverage</p>
+      <a href="mailto:jferrisfl@gmail.com" class="cta-button">Email Me</a>
+      <p style="margin-top:14px;font-size:16px;color:#bbb;">
+        Or email me directly:
+        <a href="mailto:jferrisfl@gmail.com" style="color:#fff;text-decoration:underline;">jferrisfl@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Ferris Photography. All rights reserved. &nbsp;|&nbsp;
+      <a href="mailto:jferrisfl@gmail.com" style="color:#bbb;text-decoration:none;">jferrisfl@gmail.com</a>
+    </p>
+    <div class="social-links" role="navigation" aria-label="Social links">
+      <a href="https://www.facebook.com/jeremyferrisphotography" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 320 512" aria-hidden="true"><path d="M279.14 288l14.22-92.66h-88.91V127.9c0-25.35 12.42-50.06 52.24-50.06H295V6.26S270.43 0 246.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H56v92.66h69.28V512h100.2V288z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/jeremyferrisphotography/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" class="ig-icon" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <circle cx="12" cy="12" r="5"></circle>
+          <circle cx="17.5" cy="6.5" r="1.2"></circle>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="toTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // Reveal on scroll
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.2,rootMargin:'0px 0px -100px 0px'});
+    document.querySelectorAll('[data-scroll]').forEach(el=>observer.observe(el));
+
+    // Parallax
+    window.addEventListener('scroll',()=>{
+      const el=document.querySelector('[data-parallax]');
+      if(!el) return;
+      const rect=el.parentElement.getBoundingClientRect();
+      if(rect.top<window.innerHeight && rect.bottom>0){
+        el.style.transform=`translateY(${(rect.top - window.innerHeight)*0.3}px)`;
+      }
+    });
+
+    // Navbar + Back-to-top
+    const navbar=document.getElementById('navbar');
+    const toTop=document.getElementById('toTop');
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
+      if(window.scrollY>600) toTop.classList.add('show'); else toTop.classList.remove('show');
+    });
+    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Smooth anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',(e)=>{
+        e.preventDefault();
+        const t=document.querySelector(a.getAttribute('href'));
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Lightbox + keyboard nav
+    (function(){
+      const lb=document.getElementById('lightbox');
+      const lbImg=document.getElementById('lbImg');
+      const lbCap=document.getElementById('lbCap');
+      const lbClose=document.getElementById('lbClose');
+
+      document.getElementById('masonry-gallery')?.addEventListener('click',(e)=>{
+        const t=e.target.closest('img'); if(!t) return;
+        lb.classList.add('open');
+        lbImg.src=t.dataset.full || t.src;
+        lbCap.textContent=t.getAttribute('alt') || '';
+      });
+
+      const close=()=>lb.classList.remove('open');
+      lb.addEventListener('click',(e)=>{ if(e.target===lb) close(); });
+      lbClose.addEventListener('click',close);
+      document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') close(); });
+
+      // Arrow keys to navigate
+      document.addEventListener('keydown', e=>{
+        if(!lb.classList.contains('open')) return;
+        const imgs=[...document.querySelectorAll('#masonry-gallery img')];
+        const i=imgs.findIndex(x=>(x.dataset.full||x.src)===lbImg.src);
+        if(i<0) return;
+        if(e.key==='ArrowRight'){ imgs[(i+1)%imgs.length].click(); }
+        if(e.key==='ArrowLeft'){ imgs[(i-1+imgs.length)%imgs.length].click(); }
+      });
+    })();
+
+    // Gallery filters
+    (function(){
+      const buttons = document.querySelectorAll('[data-filter]');
+      const items = document.querySelectorAll('.masonry-item');
+      buttons.forEach(b=>b.addEventListener('click',()=>{
+        buttons.forEach(x=>x.classList.remove('active')); b.classList.add('active');
+        const tag=b.dataset.filter;
+        items.forEach(it=>{
+          const tags=(it.dataset.tags||'').split(',').map(s=>s.trim());
+          it.style.display = (tag==='all' || tags.includes(tag)) ? '' : 'none';
+        });
+        // Scroll the gallery into view when a filter is chosen
+        document.getElementById('portfolio')?.scrollIntoView({behavior:'smooth',block:'start'});
+      }));
+    })();
+  </script>
 </body>
 </html>
