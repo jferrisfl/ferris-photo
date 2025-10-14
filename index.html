@@ -57,6 +57,9 @@
     nav.scrolled{padding:14px 50px;background:rgba(0,0,0,.95)}
     .logo{font-size:26px;letter-spacing:3px;font-family:'Cormorant Garamond',serif}
 
+    /* offset anchors so content isn't hidden under fixed nav */
+    [id]{ scroll-margin-top: 90px; }
+
     /* wrap for hamburger */
     .nav-wrap{display:flex;align-items:center;margin-left:auto}
     .menu-toggle{display:none;cursor:pointer;list-style:none;padding:.25rem;border-radius:.25rem}
@@ -77,6 +80,13 @@
       .nav-wrap[open] > .nav-links{display:block;position:relative;margin-top:10px;padding-top:10px;border-top:1px solid #161616}
       .nav-links{flex-direction:column;gap:14px}
       .nav-links a{padding:6px 0}
+    }
+
+    /* --- Desktop behavior --- */
+    @media (min-width: 821px){
+      .menu-toggle{ display:none; }
+      /* Always show links on desktop even if <details> is closed */
+      .nav-wrap > .nav-links{ display:flex !important; }
     }
 
     /* ======= HERO ======= */
@@ -329,7 +339,7 @@
       <figure class="masonry-item" data-scroll data-tags="landscape">
         <img src="assets/558917230_10241584464375472_5895222120379114555_n.jpg" alt="Sunset" loading="lazy" data-full="assets/558917230_10241584464375472_5895222120379114555_n.jpg">
       </figure>
-      <!-- Black & white beach → Landscape (note encoded space) -->
+      <!-- Black & white beach → Landscape -->
       <figure class="masonry-item" data-scroll data-tags="landscape">
         <img src="assets/black%20and%20white%20beach.jpg" alt="Black and white beach" loading="lazy" data-full="assets/black%20and%20white%20beach.jpg">
       </figure>
@@ -375,7 +385,7 @@
     </div>
   </section>
 
-  <!-- Contact (email only) -->
+  <!-- Contact -->
   <section class="contact-section" id="contact" aria-label="Contact">
     <div class="contact-content">
       <h2>Let's Work Together</h2>
@@ -434,15 +444,16 @@
     });
     toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-    // Smooth anchors
+    // Smooth anchors (only close hamburger on mobile)
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',(e)=>{
         e.preventDefault();
         const t=document.querySelector(a.getAttribute('href'));
         if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
-        // Close the mobile menu after selecting a link
         const details = a.closest('details');
-        if(details && details.hasAttribute('open')) details.removeAttribute('open');
+        if(details && window.matchMedia('(max-width: 820px)').matches){
+          details.removeAttribute('open');
+        }
       });
     });
 
@@ -487,25 +498,24 @@
           const tags=(it.dataset.tags||'').split(',').map(s=>s.trim());
           it.style.display = (tag==='all' || tags.includes(tag)) ? '' : 'none';
         });
-        // Scroll the gallery into view when a filter is chosen
         document.getElementById('portfolio')?.scrollIntoView({behavior:'smooth',block:'start'});
       }));
     })();
-  </script>
-<script>
-  (function () {
-    const navDetails = document.querySelector('.nav-wrap');
-    if (!navDetails) return;
-    function syncNav() {
-      if (window.matchMedia('(min-width: 821px)').matches) {
-        navDetails.setAttribute('open', '');
-      } else {
-        navDetails.removeAttribute('open');
+
+    // Keep <details> state in sync on resize: open on desktop, closed on mobile
+    (function () {
+      const navDetails = document.querySelector('.nav-wrap');
+      if (!navDetails) return;
+      function syncNav() {
+        if (window.matchMedia('(min-width: 821px)').matches) {
+          navDetails.setAttribute('open', '');
+        } else {
+          navDetails.removeAttribute('open');
+        }
       }
-    }
-    syncNav();
-    window.addEventListener('resize', syncNav);
-  })();
-</script>
+      syncNav();
+      window.addEventListener('resize', syncNav);
+    })();
+  </script>
 </body>
 </html>
