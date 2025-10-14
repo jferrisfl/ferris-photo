@@ -492,5 +492,20 @@
       }));
     })();
   </script>
+<script>
+  (function () {
+    const navDetails = document.querySelector('.nav-wrap');
+    if (!navDetails) return;
+    function syncNav() {
+      if (window.matchMedia('(min-width: 821px)').matches) {
+        navDetails.setAttribute('open', '');
+      } else {
+        navDetails.removeAttribute('open');
+      }
+    }
+    syncNav();
+    window.addEventListener('resize', syncNav);
+  })();
+</script>
 </body>
 </html>
