@@ -74,9 +74,7 @@
       nav{padding:14px 18px}
       nav.scrolled{padding:10px 18px}
       .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
-      /* Hide the list by default on mobile */
       .nav-wrap > .nav-links{display:none}
-      /* When <details> is open, show the stacked menu */
       .nav-wrap[open] > .nav-links{display:block;position:relative;margin-top:10px;padding-top:10px;border-top:1px solid #161616}
       .nav-links{flex-direction:column;gap:14px}
       .nav-links a{padding:6px 0}
@@ -85,7 +83,6 @@
     /* --- Desktop behavior --- */
     @media (min-width: 821px){
       .menu-toggle{ display:none; }
-      /* Always show links on desktop even if <details> is closed */
       .nav-wrap > .nav-links{ display:flex !important; }
     }
 
@@ -194,6 +191,11 @@
     </details>
   </nav>
 
+  <!-- ======= FAA BADGE (below nav) ======= -->
+  <div style="text-align:center;padding:20px 0;color:#bbb;font-size:14px; margin-top:70px;">
+    🛩️ Fully Licensed under <strong>FAA Part 107</strong>
+  </div>
+
   <!-- ======= HERO ======= -->
   <section class="hero" id="home">
     <div class="hero-bg"></div>
@@ -249,7 +251,7 @@
     <p class="services-list">Wildlife • Drone / Aerial • Real Estate • Portraits & Events</p>
   </section>
 
-  <!-- ======= NEW: Drone / Aerial highlight ======= -->
+  <!-- ======= Drone / Aerial highlight ======= -->
   <section class="scroll-section">
     <div class="image-reveal" data-scroll>
       <img src="assets/drone.jpg" alt="Aerial drone shot over South Florida coastline at golden hour" loading="lazy">
@@ -295,7 +297,6 @@
       <button data-filter="landscape">Landscape</button>
       <button data-filter="macro">Macro</button>
       <button data-filter="flowers">Flowers</button>
-      <!-- NEW filter button -->
       <button data-filter="aerial">Aerial/Drone</button>
     </div>
 
@@ -317,15 +318,12 @@
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/FER07307.jpg" alt="Wildlife FER07307" loading="lazy" data-full="assets/FER07307.jpg">
       </figure>
-      <!-- Bird → Wildlife -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/513558975_1248139847004882_6552134915611200022_n.jpg" alt="Bird" loading="lazy" data-full="assets/513558975_1248139847004882_6552134915611200022_n.jpg">
       </figure>
-      <!-- Lizard → Wildlife -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/512695232_1248145137004353_1579352895975609707_n.jpg" alt="Lizard" loading="lazy" data-full="assets/512695232_1248145137004353_1579352895975609707_n.jpg">
       </figure>
-      <!-- Light play still in Wildlife -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
         <img src="assets/513825336_1248139760338224_8182710943771384829_n.jpg" alt="Light play" loading="lazy" data-full="assets/513825336_1248139760338224_8182710943771384829_n.jpg">
       </figure>
@@ -352,7 +350,6 @@
       <figure class="masonry-item" data-scroll data-tags="landscape">
         <img src="assets/558917230_10241584464375472_5895222120379114555_n.jpg" alt="Sunset" loading="lazy" data-full="assets/558917230_10241584464375472_5895222120379114555_n.jpg">
       </figure>
-      <!-- Black & white beach → Landscape -->
       <figure class="masonry-item" data-scroll data-tags="landscape">
         <img src="assets/black%20and%20white%20beach.jpg" alt="Black and white beach" loading="lazy" data-full="assets/black%20and%20white%20beach.jpg">
       </figure>
@@ -388,7 +385,7 @@
         <img src="assets/flower5.jpg" alt="Flower 5" loading="lazy" data-full="assets/flower5.jpg">
       </figure>
 
-      <!-- ========== NEW: AERIAL / DRONE ========== -->
+      <!-- ========== AERIAL / DRONE ========== -->
       <figure class="masonry-item" data-scroll data-tags="aerial, landscape">
         <img src="assets/drone.jpg" alt="Aerial drone photo looking down from above" loading="lazy" data-full="assets/drone.jpg">
         <figcaption class="masonry-caption">Aerial / Drone</figcaption>
@@ -464,7 +461,7 @@
     toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
     // Smooth anchors (only close hamburger on mobile)
-    document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',(e)=>{
         e.preventDefault();
         const t=document.querySelector(a.getAttribute('href'));
