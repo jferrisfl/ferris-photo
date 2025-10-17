@@ -249,6 +249,17 @@
     <p class="services-list">Wildlife • Drone / Aerial • Real Estate • Portraits & Events</p>
   </section>
 
+  <!-- ======= NEW: Drone / Aerial highlight ======= -->
+  <section class="scroll-section">
+    <div class="image-reveal" data-scroll>
+      <img src="assets/drone.jpg" alt="Aerial drone shot over South Florida coastline at golden hour" loading="lazy">
+      <div class="image-caption">
+        <h2>Drone / Aerial</h2>
+        <p>Perspective from above</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Landscapes highlight -->
   <section class="scroll-section">
     <div class="image-reveal" data-scroll>
@@ -284,6 +295,8 @@
       <button data-filter="landscape">Landscape</button>
       <button data-filter="macro">Macro</button>
       <button data-filter="flowers">Flowers</button>
+      <!-- NEW filter button -->
+      <button data-filter="aerial">Aerial/Drone</button>
     </div>
 
     <div class="masonry" id="masonry-gallery">
@@ -375,6 +388,12 @@
         <img src="assets/flower5.jpg" alt="Flower 5" loading="lazy" data-full="assets/flower5.jpg">
       </figure>
 
+      <!-- ========== NEW: AERIAL / DRONE ========== -->
+      <figure class="masonry-item" data-scroll data-tags="aerial, landscape">
+        <img src="assets/drone.jpg" alt="Aerial drone photo looking down from above" loading="lazy" data-full="assets/drone.jpg">
+        <figcaption class="masonry-caption">Aerial / Drone</figcaption>
+      </figure>
+
     </div>
 
     <!-- Lightbox -->
@@ -445,7 +464,7 @@
     toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
     // Smooth anchors (only close hamburger on mobile)
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
       a.addEventListener('click',(e)=>{
         e.preventDefault();
         const t=document.querySelector(a.getAttribute('href'));
