@@ -149,6 +149,87 @@
     .lb-caption{position:absolute;bottom:28px;color:#ccc;font-size:14px;text-align:center;width:90%}
     .lb-close{position:absolute;top:20px;right:24px;font-size:28px;color:#fff;cursor:pointer;user-select:none}
 
+    /* ======= SOCIAL (BEST FREE OPTION) ======= */
+    .social-section{
+      padding:100px 24px;
+      background:#0b0b0b;
+      border-top:1px solid #161616;
+      border-bottom:1px solid #161616;
+    }
+    .social-wrap{
+      max-width:1100px;
+      margin:0 auto;
+      text-align:center;
+    }
+    .social-wrap h2{
+      font-size:clamp(38px,5vw,60px);
+      margin-bottom:10px;
+    }
+    .social-wrap p{
+      color:#aaa;
+      margin-bottom:22px;
+    }
+    .social-card{
+      background:#0f0f0f;
+      border:1px solid #161616;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,.35);
+      text-align:left;
+    }
+    .social-card-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 16px 14px;
+      border-bottom:1px solid #161616;
+      flex-wrap:wrap;
+    }
+    .social-card-top h3{
+      font-size:22px;
+      margin:0;
+    }
+    .social-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .social-actions a{
+      display:inline-block;
+      padding:10px 14px;
+      background:#fff;
+      color:#000;
+      text-decoration:none;
+      border-radius:999px;
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.5px;
+      transition:.2s;
+    }
+    .social-actions a.secondary{
+      background:#0b0b0b;
+      color:#fff;
+      border:1px solid #2a2a2a;
+      font-weight:600;
+    }
+    .social-actions a:hover{transform:translateY(-1px);opacity:.95}
+    .social-embed{
+      min-height:720px;
+    }
+    .social-embed iframe{
+      width:100%;
+      min-height:720px;
+      border:0;
+      display:block;
+    }
+    .social-note{
+      color:#888;
+      font-size:13px;
+      padding:14px 16px 16px;
+      border-top:1px solid #161616;
+    }
+
     /* ======= CONTACT ======= */
     .contact-section{min-height:40vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;background:#000;text-align:center}
     .cta-button{display:inline-block;padding:18px 50px;background:#fff;color:#000;text-decoration:none;border-radius:30px;font-size:16px;font-weight:600;transition:.3s}
@@ -186,6 +267,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#social">Social</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </details>
@@ -301,6 +383,7 @@
     </div>
 
     <div class="masonry" id="masonry-gallery">
+      <!-- (YOUR EXISTING GALLERY ITEMS HERE — unchanged) -->
 
       <!-- ========== WILDLIFE ========== -->
       <figure class="masonry-item" data-scroll data-tags="wildlife">
@@ -398,6 +481,39 @@
       <div class="lb-close" id="lbClose" role="button" aria-label="Close">×</div>
       <img id="lbImg" src="" alt="Expanded view"/>
       <div class="lb-caption" id="lbCap"></div>
+    </div>
+  </section>
+
+  <!-- ======= SOCIAL (FACEBOOK FEED + IG BUTTON) ======= -->
+  <section class="social-section" id="social" aria-label="Social media">
+    <div class="social-wrap">
+      <h2>Social</h2>
+      <p>Scroll my latest Facebook updates — and follow on Instagram for more.</p>
+
+      <div class="social-card">
+        <div class="social-card-top">
+          <h3>Facebook Feed</h3>
+          <div class="social-actions" aria-label="Social actions">
+            <a href="https://www.facebook.com/jeremyferrisphotography" target="_blank" rel="noopener">View on Facebook</a>
+            <a class="secondary" href="https://www.instagram.com/jeremyferrisphotography/" target="_blank" rel="noopener">Follow on Instagram</a>
+          </div>
+        </div>
+
+        <div class="social-embed">
+          <!-- Lazy-loaded: src is set by JS when this section is near view -->
+          <iframe
+            title="Facebook Page Timeline"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjeremyferrisphotography&tabs=timeline&width=900&height=750&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
+        </div>
+
+        <div class="social-note">
+          Note: Instagram doesn’t provide a free official “full profile feed” embed, so the Instagram button links directly to the profile.
+        </div>
+      </div>
     </div>
   </section>
 
@@ -531,6 +647,31 @@
       }
       syncNav();
       window.addEventListener('resize', syncNav);
+    })();
+
+    // Lazy-load the Facebook iframe when the Social section is close to view
+    (function(){
+      const social = document.getElementById('social');
+      if(!social) return;
+
+      const iframe = social.querySelector('iframe[data-src]');
+      if(!iframe) return;
+
+      const load = () => {
+        if(iframe.getAttribute('src')) return;
+        iframe.setAttribute('src', iframe.dataset.src);
+      };
+
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            load();
+            io.disconnect();
+          }
+        });
+      }, { rootMargin: "400px 0px" });
+
+      io.observe(social);
     })();
   </script>
 </body>
