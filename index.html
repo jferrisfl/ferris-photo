@@ -45,60 +45,80 @@
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#0b0b0b;color:#fff;font-family:'Montserrat',sans-serif;overflow-x:hidden}
+    body{
+      background:#0b0b0b;
+      color:#fff;
+      font-family:'Montserrat',sans-serif;
+      overflow-x:hidden;
+    }
     img{display:block;max-width:100%;height:auto}
     h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600}
+    a{color:inherit}
 
     .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip:focus{position:fixed;left:20px;top:20px;background:#fff;color:#000;padding:10px 14px;border-radius:8px;z-index:3000}
 
     /* ======= NAV (fixed + responsive) ======= */
-    nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 50px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);border-bottom:1px solid #161616;transition:.3s}
-    nav.scrolled{padding:14px 50px;background:rgba(0,0,0,.95)}
+    nav{
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      padding:20px 50px;
+      display:flex;justify-content:space-between;align-items:center;
+      background:rgba(0,0,0,.72);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:.3s;
+    }
+    nav.scrolled{padding:14px 50px;background:rgba(0,0,0,.92)}
     .logo{font-size:26px;letter-spacing:3px;font-family:'Cormorant Garamond',serif}
 
     /* offset anchors so content isn't hidden under fixed nav */
     [id]{ scroll-margin-top: 90px; }
 
     /* wrap for hamburger */
-    .nav-wrap{display:flex;align-items:center;margin-left:auto;gap:14px}
+    .nav-wrap{display:flex;align-items:center;margin-left:auto}
     .menu-toggle{display:none;cursor:pointer;list-style:none;padding:.25rem;border-radius:.25rem}
     .menu-toggle::-webkit-details-marker{display:none}
 
-    .nav-links{display:flex;gap:28px;list-style:none}
-    .nav-links a{color:#fff;text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;opacity:.9}
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+    .nav-links a{
+      color:#fff;text-decoration:none;font-size:13px;
+      letter-spacing:1.5px;text-transform:uppercase;opacity:.9
+    }
     .nav-links a:hover{opacity:.75}
 
-    /* STORE BUTTON */
-    .store-btn{
-      display:inline-block;
+    /* Store link styling INSIDE menu */
+    .nav-links a.store-link{
+      opacity:1;
       padding:10px 16px;
       border-radius:999px;
       background:#fff;
       color:#000;
-      text-decoration:none;
-      font-size:12px;
-      letter-spacing:1.5px;
-      text-transform:uppercase;
       font-weight:800;
       border:2px solid #fff;
       transition:.2s;
-      white-space:nowrap;
     }
-    .store-btn:hover{opacity:.92;transform:translateY(-1px)}
+    .nav-links a.store-link:hover{transform:translateY(-1px);opacity:.92}
 
     /* --- Mobile nav behavior --- */
     @media (max-width: 820px){
       nav{padding:14px 18px}
       nav.scrolled{padding:10px 18px}
+
       .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
       .nav-wrap > .nav-links{display:none}
-      .nav-wrap[open] > .nav-links{display:block;position:relative;margin-top:10px;padding-top:10px;border-top:1px solid #161616}
-      .nav-links{flex-direction:column;gap:14px}
+      .nav-wrap[open] > .nav-links{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        position:relative;
+        width:min(520px, 92vw);
+        margin-top:10px;
+        padding-top:12px;
+        border-top:1px solid rgba(255,255,255,.08);
+      }
+      .nav-links{gap:12px}
       .nav-links a{padding:6px 0}
-
-      /* make store button fit nicely on mobile */
-      .store-btn{padding:10px 14px;font-size:12px}
+      .nav-links a.store-link{padding:10px 14px;font-size:12px}
     }
 
     /* --- Desktop behavior --- */
@@ -108,89 +128,157 @@
     }
 
     /* ======= HERO ======= */
-    .hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0a0a0a}
-    .hero-bg{position:absolute;inset:0;background:
-      linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.78)),
-      url("assets/553239145_1319090976576435_6625720396490624142_n.jpg") center/cover no-repeat}
-    .hero-content{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;opacity:0;transform:translateY(30px);animation:fadeInUp 1.2s ease .1s forwards}
-    .hero-portrait{width:240px;height:240px;border-radius:50%;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.55);border:3px solid rgba(255,255,255,.35)}
-    .hero h1{font-size:clamp(44px,6vw,84px);font-weight:700;letter-spacing:-1.5px;margin-top:6px;background:linear-gradient(135deg,#fff 0%,#888 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 6px 24px rgba(0,0,0,.6)}
-    .hero p{font-size:clamp(16px,2vw,24px);font-weight:300;color:#ccc;text-shadow:0 4px 16px rgba(0,0,0,.55)}
+    .hero{
+      height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;overflow:hidden;background:#0a0a0a
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:
+        radial-gradient(1200px 700px at 50% 15%, rgba(255,255,255,.08), rgba(0,0,0,0) 60%),
+        linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.86)),
+        url("assets/553239145_1319090976576435_6625720396490624142_n.jpg") center/cover no-repeat;
+      transform:scale(1.02);
+    }
+    .hero-content{
+      position:relative;z-index:1;text-align:center;
+      display:flex;flex-direction:column;align-items:center;gap:18px;
+      opacity:0;transform:translateY(30px);
+      animation:fadeInUp 1.2s ease .08s forwards
+    }
+    .hero-portrait{
+      width:240px;height:240px;border-radius:50%;
+      object-fit:cover;
+      box-shadow:0 22px 80px rgba(0,0,0,.6);
+      border:3px solid rgba(255,255,255,.35)
+    }
+    .hero h1{
+      font-size:clamp(44px,6vw,86px);
+      font-weight:700;letter-spacing:-1.5px;margin-top:6px;
+      background:linear-gradient(135deg,#fff 0%,#8f8f8f 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      text-shadow:0 8px 26px rgba(0,0,0,.6)
+    }
+    .hero p{
+      font-size:clamp(16px,2vw,24px);
+      font-weight:300;color:#d2d2d2;
+      text-shadow:0 4px 18px rgba(0,0,0,.55)
+    }
     @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
 
     /* ======= SECTIONS ======= */
     section{padding:100px 24px}
-    .scroll-section{min-height:60vh;display:flex;align-items:center;justify-content:center;position:relative}
-    .image-reveal{width:100%;max-width:1400px;height:70vh;position:relative;overflow:hidden;border-radius:24px;border:1px solid #161616;opacity:0;transform:scale(.94);box-shadow:0 15px 45px rgba(0,0,0,.5);transition:all 1s ease}
+    .scroll-section{
+      min-height:60vh;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .image-reveal{
+      width:100%;
+      max-width:1500px;
+      height:72vh;
+      position:relative;overflow:hidden;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.07);
+      opacity:0;transform:scale(.94);
+      box-shadow:0 18px 65px rgba(0,0,0,.55);
+      transition:all 1s ease;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+    }
     .image-reveal.visible{opacity:1;transform:scale(1)}
-    .image-reveal img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 1.5s ease}
+    .image-reveal img{
+      width:100%;height:100%;
+      object-fit:cover;
+      transform:scale(1.14);
+      transition:transform 1.5s ease
+    }
     .image-reveal.visible img{transform:scale(1)}
-    .image-caption{position:absolute;left:32px;bottom:32px;background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0));padding:14px 18px;border-radius:12px;opacity:0;transform:translateY(18px);transition:all .8s .4s}
+    .image-caption{
+      position:absolute;left:34px;bottom:34px;
+      background:linear-gradient(0deg,rgba(0,0,0,.68),rgba(0,0,0,0));
+      padding:14px 18px;border-radius:14px;
+      opacity:0;transform:translateY(18px);
+      transition:all .8s .4s;
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(6px);
+    }
     .image-reveal.visible .image-caption{opacity:1;transform:translateY(0)}
     .image-caption h2{font-size:clamp(34px,4vw,56px)}
-    .image-caption p{font-size:16px;color:#ccc}
+    .image-caption p{font-size:16px;color:#d0d0d0}
 
     /* ======= ABOUT (parallax) ======= */
     .parallax-section{height:90vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
     .parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background:url("assets/513825336_1248139760338224_8182710943771384829_n.jpg") center/cover no-repeat;transform:translateY(0)}
-    .parallax-content{position:relative;z-index:1;text-align:center;padding:50px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:1px solid #161616;border-radius:24px;max-width:1000px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
-    .about-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center;max-width:1100px}
-    .about-photo{border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+    .parallax-content{
+      position:relative;z-index:1;
+      text-align:center;
+      padding:54px;
+      background:rgba(0,0,0,.62);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:26px;
+      max-width:1080px;
+      box-shadow:0 22px 70px rgba(0,0,0,.55);
+    }
+    .about-wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:center;max-width:1100px}
+    .about-photo{border-radius:18px;overflow:hidden;box-shadow:0 12px 34px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.08)}
     .about-photo img{width:100%;height:auto}
     .about-text{text-align:left}
-    @media (max-width:900px){.about-wrap{grid-template-columns:1fr}.about-text{text-align:center}}
+    .about-text p{color:#d0d0d0;line-height:1.6}
+    @media (max-width:900px){
+      .parallax-content{padding:34px}
+      .about-wrap{grid-template-columns:1fr}
+      .about-text{text-align:center}
+    }
 
     /* ======= SERVICES ======= */
     .services-section{padding:100px 24px;text-align:center;background:#0b0b0b}
     .services-section .title{font-size:clamp(38px,5vw,60px);margin-bottom:12px}
-    .services-list{font-size:20px;color:#ccc;letter-spacing:.5px}
+    .services-list{font-size:20px;color:#cfcfcf;letter-spacing:.5px}
 
-    /* ======= SOCIAL (BEST FREE OPTION) ======= */
+    /* ======= SOCIAL (CENTERED + BIGGER) ======= */
     .social-section{
-      padding:100px 24px;
-      background:#0b0b0b;
-      border-top:1px solid #161616;
-      border-bottom:1px solid #161616;
+      padding:110px 24px;
+      background:
+        radial-gradient(900px 420px at 50% 0%, rgba(255,255,255,.06), rgba(0,0,0,0) 60%),
+        #0b0b0b;
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
     .social-wrap{
-      max-width:1100px;
+      max-width:1500px;
       margin:0 auto;
       text-align:center;
+      padding:0 6px;
     }
     .social-wrap h2{
-      font-size:clamp(38px,5vw,60px);
+      font-size:clamp(40px,5vw,64px);
       margin-bottom:10px;
+      letter-spacing:-.5px;
     }
-    .social-wrap p{
-      color:#aaa;
-      margin-bottom:22px;
-    }
+    .social-wrap p{color:#bdbdbd;margin-bottom:26px}
+
     .social-card{
-      background:#0f0f0f;
-      border:1px solid #161616;
-      border-radius:20px;
+      max-width:1400px;
+      margin:0 auto;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
       overflow:hidden;
-      box-shadow:0 8px 20px rgba(0,0,0,.35);
+      box-shadow:0 18px 60px rgba(0,0,0,.55);
       text-align:left;
     }
     .social-card-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+      display:flex;align-items:center;justify-content:space-between;
       gap:12px;
-      padding:16px 16px 14px;
-      border-bottom:1px solid #161616;
+      padding:18px 18px 16px;
+      border-bottom:1px solid rgba(255,255,255,.08);
       flex-wrap:wrap;
     }
-    .social-card-top h3{
-      font-size:22px;
-      margin:0;
-    }
-    .social-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .social-card-top h3{font-size:24px;margin:0}
+
+    .social-actions{display:flex;gap:10px;flex-wrap:wrap}
     .social-actions a{
       display:inline-block;
       padding:10px 14px;
@@ -198,42 +286,72 @@
       color:#000;
       text-decoration:none;
       border-radius:999px;
-      font-weight:700;
+      font-weight:800;
       font-size:13px;
       letter-spacing:.5px;
       transition:.2s;
+      border:2px solid #fff;
     }
     .social-actions a.secondary{
-      background:#0b0b0b;
+      background:rgba(0,0,0,.25);
       color:#fff;
-      border:1px solid #2a2a2a;
-      font-weight:600;
+      border:1px solid rgba(255,255,255,.14);
+      font-weight:700;
     }
     .social-actions a:hover{transform:translateY(-1px);opacity:.95}
+
+    /* Center the iframe and make it larger */
     .social-embed{
-      min-height:720px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:18px;
+      background:rgba(0,0,0,.25);
     }
     .social-embed iframe{
-      width:100%;
-      min-height:720px;
+      width:min(1280px, 100%);
+      min-height:920px;
       border:0;
       display:block;
+      border-radius:18px;
+      box-shadow:0 12px 40px rgba(0,0,0,.55);
+      background:#000;
     }
+    @media (max-width: 900px){
+      .social-embed{padding:12px}
+      .social-embed iframe{min-height:780px;border-radius:16px}
+    }
+    @media (max-width: 520px){
+      .social-embed iframe{min-height:720px}
+    }
+
     .social-note{
-      color:#888;
+      color:#9a9a9a;
       font-size:13px;
-      padding:14px 16px 16px;
-      border-top:1px solid #161616;
+      padding:14px 18px 18px;
+      border-top:1px solid rgba(255,255,255,.08);
     }
 
     /* ======= CONTACT ======= */
-    .contact-section{min-height:40vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;background:#000;text-align:center}
-    .cta-button{display:inline-block;padding:18px 50px;background:#fff;color:#000;text-decoration:none;border-radius:30px;font-size:16px;font-weight:600;transition:.3s}
-    .cta-button:hover{background:#ddd;transform:scale(1.05)}
+    .contact-section{
+      min-height:40vh;
+      display:flex;align-items:center;justify-content:center;
+      padding:90px 24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,0)), #000;
+      text-align:center
+    }
+    .contact-content p{color:#c9c9c9}
+    .cta-button{
+      display:inline-block;padding:18px 50px;background:#fff;color:#000;
+      text-decoration:none;border-radius:30px;font-size:16px;font-weight:800;
+      transition:.25s;border:2px solid #fff;
+      margin-top:12px;
+    }
+    .cta-button:hover{background:#eaeaea;transform:translateY(-1px) scale(1.02)}
 
     /* ======= FOOTER ======= */
-    footer{padding:40px 24px;text-align:center;background:#0b0b0b;border-top:1px solid #161616}
-    footer p{color:#666;font-size:14px}
+    footer{padding:40px 24px;text-align:center;background:#0b0b0b;border-top:1px solid rgba(255,255,255,.06)}
+    footer p{color:#777;font-size:14px}
     .social-links{display:flex;gap:18px;align-items:center;justify-content:center;margin-top:12px}
     .social-links a{display:inline-flex;width:28px;height:28px;opacity:.9;transition:.2s;color:#fff}
     .social-links a:hover{opacity:1;transform:translateY(-2px) scale(1.06)}
@@ -241,40 +359,50 @@
     .ig-icon{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 
     /* ======= BACK TO TOP ======= */
-    #toTop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #2a2a2a;background:#0f0f0f;color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:1200}
+    #toTop{
+      position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(15,15,15,.85);
+      backdrop-filter:blur(10px);
+      color:#fff;display:none;align-items:center;justify-content:center;
+      cursor:pointer;z-index:1200;
+      box-shadow:0 10px 30px rgba(0,0,0,.45);
+    }
     #toTop.show{display:flex}
   </style>
 </head>
-<body>
 
+<body>
   <a class="skip" href="#social">Skip to social</a>
 
   <!-- ======= NAV ======= -->
   <nav id="navbar" aria-label="Primary">
     <div class="logo">FERRIS</div>
 
-    <!-- Store button (always visible) -->
-    <a class="store-btn" href="https://jfphotostore.picfair.com" target="_blank" rel="noopener">Store</a>
-
     <!-- Accessible hamburger without JS -->
     <details class="nav-wrap">
       <summary class="menu-toggle" aria-label="Open menu">
-        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
       </summary>
+
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#social">Social</a></li>
         <li><a href="#contact">Contact</a></li>
+
+        <!-- Store link in the menu (as requested) -->
+        <li>
+          <a class="store-link" href="https://jfphotostore.picfair.com" target="_blank" rel="noopener">
+            Store
+          </a>
+        </li>
       </ul>
     </details>
   </nav>
-
-  <!-- ======= FAA BADGE (below nav) ======= -->
-  <div style="text-align:center;padding:20px 0;color:#bbb;font-size:14px; margin-top:70px;">
-    🛩️ Fully Licensed under <strong>FAA Part 107</strong>
-  </div>
 
   <!-- ======= HERO ======= -->
   <section class="hero" id="home">
@@ -308,9 +436,12 @@
         <div class="about-text">
           <h2>Beyond the Lens</h2>
           <p>Every photograph tells a story of patience, passion, and the profound connection between nature and art.</p>
-          <div class="social-links" role="navigation" aria-label="Social links">
+
+          <div class="social-links" role="navigation" aria-label="Social links" style="justify-content:flex-start;margin-top:16px">
             <a href="https://www.facebook.com/jeremyferrisphotography" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg viewBox="0 0 320 512" aria-hidden="true"><path d="M279.14 288l14.22-92.66h-88.91V127.9c0-25.35 12.42-50.06 52.24-50.06H295V6.26S270.43 0 246.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H56v92.66h69.28V512h100.2V288z"/></svg>
+              <svg viewBox="0 0 320 512" aria-hidden="true">
+                <path d="M279.14 288l14.22-92.66h-88.91V127.9c0-25.35 12.42-50.06 52.24-50.06H295V6.26S270.43 0 246.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H56v92.66h69.28V512h100.2V288z"/>
+              </svg>
             </a>
             <a href="https://www.instagram.com/jeremyferrisphotography/" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24" class="ig-icon" aria-hidden="true">
@@ -320,18 +451,22 @@
               </svg>
             </a>
           </div>
+
+          <div style="margin-top:14px;color:#bdbdbd;line-height:1.6;">
+            South Florida based • Available for commissions, prints, and event coverage.
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services (minimal) -->
+  <!-- Services -->
   <section class="services-section" id="services" data-scroll>
     <h2 class="title">Services</h2>
     <p class="services-list">Wildlife • Drone / Aerial • Real Estate • Portraits & Events</p>
   </section>
 
-  <!-- ======= Drone / Aerial highlight ======= -->
+  <!-- Drone / Aerial highlight -->
   <section class="scroll-section">
     <div class="image-reveal" data-scroll>
       <img src="assets/drone.jpg" alt="Aerial drone shot over South Florida coastline at golden hour" loading="lazy">
@@ -364,18 +499,20 @@
     </div>
   </section>
 
-  <!-- ======= SOCIAL (FACEBOOK FEED + IG BUTTON) ======= -->
+  <!-- ======= SOCIAL ======= -->
   <section class="social-section" id="social" aria-label="Social media">
     <div class="social-wrap">
       <h2>Social</h2>
-      <p>Scroll my latest Facebook updates — and follow on Instagram for more.</p>
+      <p>Scroll my latest Facebook updates — follow on Instagram — and shop prints in the Store.</p>
 
       <div class="social-card">
         <div class="social-card-top">
           <h3>Facebook Feed</h3>
+
           <div class="social-actions" aria-label="Social actions">
             <a href="https://www.facebook.com/jeremyferrisphotography" target="_blank" rel="noopener">View on Facebook</a>
             <a class="secondary" href="https://www.instagram.com/jeremyferrisphotography/" target="_blank" rel="noopener">Follow on Instagram</a>
+            <!-- keep the store button here (you said you like this one) -->
             <a class="secondary" href="https://jfphotostore.picfair.com" target="_blank" rel="noopener">Visit Store</a>
           </div>
         </div>
@@ -386,7 +523,7 @@
             title="Facebook Page Timeline"
             loading="lazy"
             referrerpolicy="no-referrer"
-            data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjeremyferrisphotography&tabs=timeline&width=900&height=750&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
+            data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjeremyferrisphotography&tabs=timeline&width=1280&height=920&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
           </iframe>
         </div>
@@ -401,16 +538,21 @@
   <!-- Contact -->
   <section class="contact-section" id="contact" aria-label="Contact">
     <div class="contact-content">
-      <h2>Let's Work Together</h2>
+      <h2 style="font-size:clamp(38px,5vw,60px);margin-bottom:10px;">Let's Work Together</h2>
       <p>Available for commissions, prints, and event coverage</p>
+
       <a href="mailto:jferrisfl@gmail.com" class="cta-button">Email Me</a>
-      <p style="margin-top:14px;font-size:16px;color:#bbb;">
+
+      <p style="margin-top:14px;font-size:16px;color:#bdbdbd;">
         Or email me directly:
         <a href="mailto:jferrisfl@gmail.com" style="color:#fff;text-decoration:underline;">jferrisfl@gmail.com</a>
       </p>
-      <p style="margin-top:14px;font-size:16px;color:#bbb;">
+
+      <p style="margin-top:12px;font-size:16px;color:#bdbdbd;">
         Prints & downloads:
-        <a href="https://jfphotostore.picfair.com" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">jfphotostore.picfair.com</a>
+        <a href="https://jfphotostore.picfair.com" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">
+          jfphotostore.picfair.com
+        </a>
       </p>
     </div>
   </section>
@@ -418,11 +560,14 @@
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Ferris Photography. All rights reserved. &nbsp;|&nbsp;
-      <a href="mailto:jferrisfl@gmail.com" style="color:#bbb;text-decoration:none;">jferrisfl@gmail.com</a>
+      <a href="mailto:jferrisfl@gmail.com" style="color:#aaa;text-decoration:none;">jferrisfl@gmail.com</a>
     </p>
+
     <div class="social-links" role="navigation" aria-label="Social links">
       <a href="https://www.facebook.com/jeremyferrisphotography" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg viewBox="0 0 320 512" aria-hidden="true"><path d="M279.14 288l14.22-92.66h-88.91V127.9c0-25.35 12.42-50.06 52.24-50.06H295V6.26S270.43 0 246.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H56v92.66h69.28V512h100.2V288z"/></svg>
+        <svg viewBox="0 0 320 512" aria-hidden="true">
+          <path d="M279.14 288l14.22-92.66h-88.91V127.9c0-25.35 12.42-50.06 52.24-50.06H295V6.26S270.43 0 246.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H56v92.66h69.28V512h100.2V288z"/>
+        </svg>
       </a>
       <a href="https://www.instagram.com/jeremyferrisphotography/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" class="ig-icon" aria-hidden="true">
@@ -439,7 +584,10 @@
 
   <script>
     // Reveal on scroll
-    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.2,rootMargin:'0px 0px -100px 0px'});
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: .2, rootMargin: '0px 0px -100px 0px' });
+
     document.querySelectorAll('[data-scroll]').forEach(el=>observer.observe(el));
 
     // Parallax
@@ -455,10 +603,12 @@
     // Navbar + Back-to-top
     const navbar=document.getElementById('navbar');
     const toTop=document.getElementById('toTop');
+
     window.addEventListener('scroll',()=>{
       if(window.scrollY>50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
       if(window.scrollY>600) toTop.classList.add('show'); else toTop.classList.remove('show');
     });
+
     toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
     // Smooth anchors (only close hamburger on mobile)
@@ -478,6 +628,7 @@
     (function () {
       const navDetails = document.querySelector('.nav-wrap');
       if (!navDetails) return;
+
       function syncNav() {
         if (window.matchMedia('(min-width: 821px)').matches) {
           navDetails.setAttribute('open', '');
@@ -509,7 +660,7 @@
             io.disconnect();
           }
         });
-      }, { rootMargin: "400px 0px" });
+      }, { rootMargin: "500px 0px" });
 
       io.observe(social);
     })();
